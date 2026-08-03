@@ -1,0 +1,39 @@
+﻿Deno Deploy 版本说明
+
+核心文件：
+- server.ts：Deno Deploy 入口文件，包含后端接口和网页页面。
+- deno.json：本地 Deno 启动配置。
+- .env.example：环境变量示例。
+
+部署到 Deno Deploy：
+1. 新建 Deno Deploy 项目。
+2. 上传/推送 server.ts 和 deno.json。
+3. Entry point 选择：server.ts
+4. 在 Deno Deploy 的 Environment Variables 里添加：
+   MEAPI_API_KEY=你的真实 sk key
+   KEY_NAME=老弟朋友
+   API_BASE_URL=https://meapi.space
+   PUBLIC_QUOTA_LIMIT=50
+   REAL_QUOTA_LIMIT=30
+   SCALE_USAGE_TO_PUBLIC_QUOTA=true
+   ESTIMATE_PRICE_PER_1M_TOKENS=0.12
+   DAYS=30
+   TIMEZONE=Asia/Shanghai
+   CACHE_SECONDS=20
+
+额度换算：
+- 真实额度 30。
+- 对外展示 50。
+- 消耗和剩余额度按 50/30 线性换算。
+- 真实用完 30 时，对外显示 50 也刚好用完。
+
+本地测试：
+1. 复制 .env.example 为 .env
+2. 把 .env 里的 MEAPI_API_KEY 改成真实 key
+3. 执行：deno task dev
+4. 打开：http://localhost:8000 或终端显示的地址
+
+注意：
+- 不要把真实 key 写进前端页面。
+- 不要把 .env 提交到公开仓库。
+- 如果网页是公开的，任何知道地址的人都能看到这个 key 的剩余额度；如果需要限制访问，需要再加访问密码。
