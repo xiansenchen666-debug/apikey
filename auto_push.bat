@@ -18,4 +18,4 @@ echo.
 
 echo -----------------------------
 echo complete
-exit
+exit /b 0
