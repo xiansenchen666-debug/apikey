@@ -22,7 +22,7 @@ const CFG = {
   days: nenv("DAYS", 30),
   timezone: Deno.env.get("TIMEZONE") || "Asia/Shanghai",
   publicLimit: nenv("PUBLIC_QUOTA_LIMIT", 50),
-  realLimit: nenv("REAL_QUOTA_LIMIT", 40),
+  realLimit: nenv("REAL_QUOTA_LIMIT", 30),
   scaleEnabled: benv("SCALE_USAGE_TO_PUBLIC_QUOTA", true),
   tokenPrice: nenv("ESTIMATE_PRICE_PER_1M_TOKENS", 0.12),
   cacheSeconds: nenv("CACHE_SECONDS", 20),
@@ -78,7 +78,7 @@ async function usage(force = false): Promise<Rec> {
   const raw = JSON.parse(text) as Rec;
   const rawQuota = (typeof raw.quota === "object" && raw.quota ? raw.quota : {}) as Rec;
 
-  const realLimit = CFG.realLimit || moneyNum(rawQuota.limit) || 40;
+  const realLimit = CFG.realLimit || moneyNum(rawQuota.limit) || 30;
   const factor = CFG.scaleEnabled ? CFG.publicLimit / realLimit : 1;
   const scaled = (v: unknown): unknown => {
     const x = moneyNum(v);
