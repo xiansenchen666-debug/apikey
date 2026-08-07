@@ -14,7 +14,7 @@
    KEY_NAME=老弟朋友
    API_BASE_URL=https://meapi.space
    PUBLIC_QUOTA_LIMIT=50
-   REAL_QUOTA_LIMIT=30
+   REAL_QUOTA_LIMIT=40
    SCALE_USAGE_TO_PUBLIC_QUOTA=true
    ESTIMATE_PRICE_PER_1M_TOKENS=0.12
    DAYS=30
@@ -22,10 +22,10 @@
    CACHE_SECONDS=20
 
 额度换算：
-- 真实额度 30。
+- 真实额度 40。
 - 对外展示 50。
-- 消耗和剩余额度按 50/30 线性换算。
-- 真实用完 30 时，对外显示 50 也刚好用完。
+- 消耗和剩余额度按 50/40 线性换算。
+- 真实用完 40 时，对外显示 50 也刚好用完。
 
 本地测试：
 1. 复制 .env.example 为 .env
